@@ -2,8 +2,9 @@
 FROM node AS build
 WORKDIR /app
 COPY . .
+RUN npm install @quasar/cli
 RUN npm install
-RUN quasar build
+RUN npx quasar build
 
 FROM nginx:alpine AS final
 COPY --from=build /app/dist/spa /usr/share/nginx/html
