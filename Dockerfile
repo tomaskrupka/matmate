@@ -30,8 +30,11 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copy static files from the build-stage-webapp
 COPY --from=build-stage-webapp /app/dist/spa /var/www/html
 
-# Make sure the ASP.NET app runs when the container starts
-ENTRYPOINT ["dotnet", "Api.dll"]
+# Copy start script
+COPY start.sh /app/start.sh
 
-# Setup nginx to start as well
-CMD ["nginx", "-g", "daemon off;"]
+# Give execute permissions to the script
+RUN chmod +x /app/start.sh
+
+# Set the script as the entry point
+ENTRYPOINT ["/app/start.sh"]
