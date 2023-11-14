@@ -17,6 +17,9 @@ FROM mcr.microsoft.com/dotnet/aspnet AS final-stage
 WORKDIR /app
 COPY --from=build-stage-api /app ./
 
+# Set environment variable to listen on port 5140
+ENV ASPNETCORE_URLS=http://+:5140
+
 # Install nginx
 RUN apt-get update 
 RUN apt-get install -y nginx
