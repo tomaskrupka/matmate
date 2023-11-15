@@ -2,14 +2,14 @@ namespace MatMate.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AuthController : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly ILogger<AuthController> _logger;
+    private readonly ILogger<UserController> _logger;
 
-    public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-        ILogger<AuthController> logger)
+    public UserController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
+        ILogger<UserController> logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;
